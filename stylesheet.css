@@ -1,0 +1,12 @@
+h1 {
+  color: blue;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+main {
+  margin:0 auto;
+}
