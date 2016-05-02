@@ -1,7 +1,5 @@
 $(document).ready(function() {
-
-  var employees = [];
-
+  //variable that holds the monthly salary
   var monthlySal = 0;
 
   //takes the employee data and put appends it to the DOM
@@ -20,9 +18,6 @@ $(document).ready(function() {
 
     // clear out inputs in the fields
     $('.employeeData').find('input[type=text]').val('');
-
-    // add to array of employees
-    employees.push(employee);
 
     // appends the employee data to the DOM
     appendDom(employee);
@@ -49,13 +44,19 @@ $(document).ready(function() {
                + '<li><p class="salary">Salary: $' + empInfo.employeeSalary + '</p></li></ul>'
                + '<button type="button" name="button" class="delBut">Delete Employee</button></div>');
 
+  employeeSal(empInfo);
+
+  }
+
+  //adds a data field to the newly added employee stuff on the DOM
+  function employeeSal (empInfo) {
+    $('.employee').last().data('employeeSal', Number(empInfo.employeeSalary));
   }
 
   // the delete button function that removes the employees salary from the monthly cost
   function deleteEmployee () {
-
+    var salary =$(this).parent().data('employeeSal');
     $(this).parent().remove();
-    var salary = $(this).closest('.employee').find('.salary').text().substring(9);
     monthlySal -= Math.round(salary / 12);
     $('.monTotal').text('Monthly Cost: $' + monthlySal);
 
